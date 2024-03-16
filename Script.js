@@ -15,7 +15,7 @@ const echoPostRequest = {
 var getToken = true;
 
 if (!pm.environment.get('accessTokenExpiry') ||
-    !pm.environment.get('archiveAccessToken')) {
+    !pm.environment.get('accessToken')) {
         console.log('Token or expiry date are missing')
     } else if (pm.environment.get('accessTokenExpiry') <= (new Date()).getTime()) {
         console.log('Token is expired')
@@ -30,7 +30,7 @@ if (getToken === true) {
             if (err === null){
                 console.log('Saving the token and expiry date')
                 var responseJson = res.json();
-                pm.environment.set('archiveAccessToken', responseJson.access_token)
+                pm.environment.set('accessToken', responseJson.access_token)
 
                 var expiryDate = new Date();
                 expiry.Date.setSeconds(expiryDate.getSeconds() + responseJson.expires_in);
